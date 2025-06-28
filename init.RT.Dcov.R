@@ -5,7 +5,6 @@ e2dist <- function (x, y){
 }
 
 init.RT.Dcov <- function(data,inits=NA,M=NA,obstype="poisson"){
-  library(abind)
   y.ID <- data$y.ID
   y.noID <- data$y.noID
   X <- as.matrix(data$X)
