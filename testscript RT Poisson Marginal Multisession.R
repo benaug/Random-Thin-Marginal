@@ -57,7 +57,7 @@ M <- c(175,175,175) #data augmentation level
 X <- sapply(data,function(x){x$X})
 J <- sapply(X,nrow) #number of detectors
 
-inits <- list(lam0=rep(0.5,N.session),sigma=rep(1,N.session)) #ballpark inits to build data, one per session. Using simulated values here, don't do this in practice.
+inits <- list(lam0=rep(1,N.session),sigma=rep(1,N.session)) #ballpark inits to build data, one per session. 
 
 #augment, initialize data, check starting obsmod logProb
 nimbuild <- init.RT.multisession(data,inits,M=M,obstype="poisson")
