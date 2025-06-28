@@ -56,6 +56,7 @@ for(g in 1:N.session){
 M <- c(175,175,175) #data augmentation level
 X <- sapply(data,function(x){x$X})
 J <- sapply(X,nrow) #number of detectors
+area <- sapply(data,function(x){x$area}) #pull state space areas out of data
 
 inits <- list(lam0=rep(1,N.session),sigma=rep(1,N.session)) #ballpark inits to build data, one per session. 
 

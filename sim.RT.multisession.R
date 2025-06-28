@@ -47,6 +47,9 @@ sim.RT.multisession <-
       }
     }
     
+    #get areas
+    area <- getArea(X=X,buff=buff)
+    
     #simulate sessions one at a time
     N <- rpois(N.session,lambda.N)
     data <- vector("list",N.session)
@@ -54,6 +57,7 @@ sim.RT.multisession <-
       data[[g]] <-  sim.RT(N=N[g],theta.thin=theta.thin[g],
                            lam0=lam0[g],p0=p0[g],sigma=sigma[g],K=K[g],X=X[[g]],buff=buff[g],
                            obstype=obstype,theta.d=theta.d[g],K1D=K1D[[g]])
+      data[[g]]$area <- area[g]
     }
     return(data)
   }
