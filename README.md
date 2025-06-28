@@ -20,5 +20,7 @@ https://github.com/benaug/RandomThinIDCov
 These are more limited (e.g., no habitat mask, density covariates), but can be modified.
 
 Analogous repositories in the "Marginal Unmarked Trilogy" can be found here:
+
 Unmarked SCR: https://github.com/benaug/Unmarked-SCR-Marginal
+
 Spatial mark-resight: https://github.com/benaug/Spatial-Mark-Resight-Marginal
