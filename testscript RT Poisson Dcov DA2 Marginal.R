@@ -140,9 +140,7 @@ nt2 <- 10 #thinning rate
 start.time <- Sys.time()
 Rmodel <- nimbleModel(code=NimModel, constants=constants, data=Nimdata,check=FALSE,
                       inits=Niminits)
-#use block sampler below for 'D0.M','D.beta1'
 config.nodes <- c('lam0','sigma','theta.thin')
-# config.nodes <- c()
 conf <- configureMCMC(Rmodel,monitors=parameters, thin=nt,
                       monitors2=parameters2, thin2=nt2,
                       nodes=config.nodes)
