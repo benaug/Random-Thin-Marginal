@@ -1,8 +1,5 @@
 # Random-Thin-Marginal
-SCR with random thinning marginalizing out individual IDs
-
-# Spatial-Mark-Resight-Marginal
-SCR with random thinning samplers marginalizing out latent individual IDs. Poisson obesrvation model only. 
+SCR with random thinning samplers marginalizing out latent individual IDs. Poisson obeservation model only. 
 To speed up computation, I use the approach of Herliansyah et al. (2024, section 4.3) in the custom N/z and activity center updates.
 
 https://link.springer.com/article/10.1007/s13253-023-00598-3
