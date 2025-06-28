@@ -1,5 +1,5 @@
 # Random-Thin-Marginal
-SCR with random thinning samplers marginalizing out latent individual IDs. Poisson obeservation model only. 
+SCR with random thinning samplers marginalizing out latent individual IDs. Poisson observation model only. 
 To speed up computation, I use the approach of Herliansyah et al. (2024, section 4.3) in the custom N/z and activity center updates.
 
 https://link.springer.com/article/10.1007/s13253-023-00598-3
@@ -18,3 +18,7 @@ Random thinning models that allow observation models other than Poisson and/or c
 https://github.com/benaug/RandomThinIDCov
 
 These are more limited (e.g., no habitat mask, density covariates), but can be modified.
+
+Analogous repositories in the "Marginal Unmarked Trilogy" can be found here:
+Unmarked SCR: https://github.com/benaug/Unmarked-SCR-Marginal
+Spatial mark-resight: https://github.com/benaug/Spatial-Mark-Resight-Marginal
