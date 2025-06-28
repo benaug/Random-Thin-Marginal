@@ -46,7 +46,7 @@ g <- 1 #session to look at
 str(data[[g]]$y.ID) #the observed ID detections
 str(data[[g]]$y.noID) #trap by occasion counts of unidentified detections
 
-#To fit models faster, we will sum data over occasoins
+#To fit models faster, we will sum data over occasions
 for(g in 1:N.session){
   data[[g]]$y.ID <- apply(data[[g]]$y.ID,c(1,2),sum)
   data[[g]]$y.noID <- rowSums(data[[g]]$y.noID)

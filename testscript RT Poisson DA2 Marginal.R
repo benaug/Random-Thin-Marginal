@@ -29,7 +29,7 @@ data <- sim.RT(N=N,lam0=lam0,sigma=sigma,K=K,X=X,buff=buff,theta.thin=theta.thin
 str(data$y.ID) #the observed ID detections
 str(data$y.noID) #trap by occasion counts of unidentified detections
 
-#To fit models faster, we will sum data over occasoins
+#To fit models faster, we will sum data over occasions
 data$y.ID <- apply(data$y.ID,c(1,2),sum)
 data$y.noID <- rowSums(data$y.noID)
 
