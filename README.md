@@ -19,8 +19,11 @@ https://github.com/benaug/RandomThinIDCov
 
 These are more limited (e.g., no habitat mask, density covariates), but can be modified.
 
-Analogous repositories in the "Marginal Unmarked Trilogy" can be found here:
+
+Analogous repositories for different combinations of marked and unmarked data types can be found here:
 
 Unmarked SCR: https://github.com/benaug/Unmarked-SCR-Marginal
 
 Spatial mark-resight: https://github.com/benaug/Spatial-Mark-Resight-Marginal
+
+SCR with integrated occupancy data: https://github.com/benaug/SCR_Dcov_IntegratedOccupancy
