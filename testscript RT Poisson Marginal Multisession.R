@@ -62,6 +62,23 @@ inits <- list(lam0=rep(1,N.session),sigma=rep(1,N.session)) #ballpark inits to b
 
 #augment, initialize data, check starting obsmod logProb
 nimbuild <- init.RT.multisession(data,inits,M=M,obstype="poisson")
+#plot to check s inits
+for(g in 1:N.session){
+  plot(NA,xlim=data[[g]]$xlim,ylim=data[[g]]$ylim, main=paste("Session",g),xlab="X",ylab="Y")
+  points(X[[g]],pch=4)
+  points(nimbuild$s[g,,],pch=16) #initialized activity centers
+  for(i in 1:data[[g]]$n.cap){
+    trapcaps <- which(data[[g]]$y.ID[i,]>0)
+    traps <-  rbind(X[[g]][trapcaps,])
+    s <- nimbuild$s[g,i,]
+    points(s[1],s[2],col="goldenrod",pch=16)
+    if(nrow(traps)>0){
+      for(j in 1:nrow(traps)){
+        lines(x=c(s[1],traps[j,1]),y=c(s[2],traps[j,2]),col="goldenrod")
+      }
+    }
+  }
+}
 
 #inits for nimble
 N.init <- rowSums(nimbuild$z,na.rm=TRUE)

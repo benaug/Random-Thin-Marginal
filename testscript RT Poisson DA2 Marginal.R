@@ -43,6 +43,20 @@ inits <- list(lam0=1,sigma=1) #ballpark inits to build data
 
 #augment, initialize data, check starting obsmod logProb
 nimbuild <- init.RT(data,inits,M=M)
+plot(NA,xlim=data$xlim,ylim=data$ylim)
+points(X,pch=4)
+points(nimbuild$s,pch=16) #initialized activity centers
+for(i in 1:data$n.cap){
+  trapcaps <- which(data$y.ID[i,]>0)
+  traps <-  rbind(X[trapcaps,])
+  s <- nimbuild$s[i,]
+  points(s[1],s[2],col="goldenrod",pch=16)
+  if(nrow(traps)>0){
+    for(j in 1:nrow(traps)){
+      lines(x=c(s[1],traps[j,1]),y=c(s[2],traps[j,2]),col="goldenrod")
+    }
+  }
+}
 
 #inits for nimble
 Niminits <- list(z=nimbuild$z,N=sum(nimbuild$z), #z and N inits must be consistent

@@ -29,6 +29,16 @@ init.RT <- function(data,inits=NA,M=NA){
   #make a plausibly true complete data set to initialize data
   #assign random locations to assign latent ID samples to individuals
   s.init <- cbind(runif(M,xlim[1],xlim[2]), runif(M,ylim[1],ylim[2]))
+  #but update s.inits for identified individuals before assigning latent detections
+  idx <- which(rowSums(y.ID)>0)
+  for(i in idx){
+    trps <- matrix(X[which(y.ID[i,]>0),1:2],ncol=2,byrow=FALSE)
+    if(nrow(trps)>1){
+      s.init[i,] <- c(mean(trps[,1]),mean(trps[,2]))
+    }else{
+      s.init[i,] <- trps
+    }
+  }
   D <- e2dist(s.init, X)
   lamd <- lam0*exp(-D*D/(2*sigma*sigma))
   y.true <- y.ID
