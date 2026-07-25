@@ -14,8 +14,8 @@ init.RT.Dcov.multisession <- function(data,inits=NA,M=NA){
   maxJ <- max(J)
   s <- array(NA,dim=c(N.session,maxM,2))
   z <- matrix(NA,N.session,maxM)
-  y.ID <- array(NA,dim=c(N.session,maxM,max(J)))
-  y.noID <- matrix(NA,N.session,maxJ)
+  y.ID <- array(0,dim=c(N.session,maxM,max(J)))
+  y.noID <- matrix(0,N.session,maxJ)
   for(g in 1:N.session){
     y.noID[g,1:J[g]] <- data[[g]]$y.noID
   }

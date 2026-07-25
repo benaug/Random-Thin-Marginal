@@ -87,8 +87,10 @@ sim.RT.Dcov <-
     y.thin <- array(rbinom(n.cap*J*K,y.true,1-theta.thin),dim=c(n.cap,J,K))
     y.ID <- y.true - y.thin
     y.noID <- apply(y.thin,c(2,3),sum)
+    n.ID <- sum(rowSums(y.ID)>0)
+    y.ID <- y.ID[which(rowSums(y.ID)>0),,,drop=FALSE]
     
-    out <- list(y.ID=y.ID,y.noID=y.noID, #observed data
+    out <- list(y.ID=y.ID,y.noID=y.noID,n.ID=n.ID, #observed data
                 y.true=y.true.original,n.cap=n.cap,s=s, #true data
                 X=X,K=K,K1D=K1D,
                 xlim=xlim,ylim=ylim,x.vals=x.vals,y.vals=y.vals,dSS=dSS,cells=cells,

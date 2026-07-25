@@ -115,18 +115,19 @@ nimbuild <- init.RT.Dcov(data,inits,M=M)
 image(data$x.vals,data$y.vals,matrix(data$D.cov*data$InSS,data$n.cells.x,data$n.cells.y),main="D.cov",xlab="X",ylab="Y",col=cols1)
 points(X,pch=4)
 points(nimbuild$s,pch=16) #initialized activity centers
-for(i in 1:data$n.cap){
-  trapcaps <- which(data$y.ID[i,]>0)
-  traps <-  rbind(X[trapcaps,])
-  s <- nimbuild$s[i,]
-  points(s[1],s[2],col="goldenrod",pch=16)
-  if(nrow(traps)>0){
-    for(j in 1:nrow(traps)){
-      lines(x=c(s[1],traps[j,1]),y=c(s[2],traps[j,2]),col="goldenrod")
+if(data$n.ID>0){
+  for(i in 1:data$n.ID){
+    trapcaps <- which(data$y.ID[i,]>0)
+    traps <-  rbind(X[trapcaps,])
+    s <- nimbuild$s[i,]
+    points(s[1],s[2],col="goldenrod",pch=16)
+    if(nrow(traps)>0){
+      for(j in 1:nrow(traps)){
+        lines(x=c(s[1],traps[j,1]),y=c(s[2],traps[j,2]),col="goldenrod")
+      }
     }
   }
 }
-
 #inits for nimble
 D0.init <- sum(nimbuild$z)/(sum(data$InSS)*data$res^2)
 Niminits <- list(z=nimbuild$z,N=sum(nimbuild$z), #z and N inits must be consistent

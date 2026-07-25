@@ -10,7 +10,7 @@ init.RT.Dcov <- function(data,inits=NA,M=NA,obstype="poisson"){
   X <- as.matrix(data$X)
   J <- nrow(X)
   buff <- data$buff
-  n.ID <- nrow(y.ID)
+  n.ID <- data$n.ID
   K1D <- data$K1D
   xlim <- data$xlim
   ylim <- data$ylim
@@ -18,10 +18,12 @@ init.RT.Dcov <- function(data,inits=NA,M=NA,obstype="poisson"){
   ##pull out initial values
   lam0 <- inits$lam0
   sigma <- inits$sigma
-  
+
   #Augment data
   y.aug <- matrix(0,M,J)
-  y.aug[1:n.ID,] <- y.ID
+  if(n.ID>0){
+    y.aug[1:n.ID,] <- y.ID
+  }
   y.ID <- y.aug
   
   #make a plausibly true complete data set to initialize data
@@ -40,9 +42,11 @@ init.RT.Dcov <- function(data,inits=NA,M=NA,obstype="poisson"){
   lamd <- lam0*exp(-D*D/(2*sigma*sigma))
   y.true <- y.ID
   for(j in 1:J){
-    prob <- lamd[,j]
-    prob <- prob/sum(prob)
-    y.true[,j] <- y.true[,j] + rmultinom(1,y.noID[j],prob=prob)
+    if(y.noID[j]>0){
+      prob <- lamd[,j]
+      prob <- prob/sum(prob)
+      y.true[,j] <- y.true[,j] + rmultinom(1,y.noID[j],prob=prob)
+    }
   }
   
   #initialize z
